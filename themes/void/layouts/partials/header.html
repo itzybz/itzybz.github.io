@@ -1,0 +1,38 @@
+<head>
+	<meta charset="utf-8">
+  
+	{{- $title := ( .Title ) -}}
+	{{- $siteTitle := ( .Site.Title ) -}}
+
+  <meta property="og:site_name" content="{{ $siteTitle }}">
+
+	{{- if .IsHome -}}
+	<title>{{ $siteTitle }} {{ if isset .Site.Params "subtitle" }} | {{ .Site.Params.SubTitle }}{{ end }}</title>
+  <meta property="og:title" content="{{ $title }}">
+	{{- else -}}
+	<title>{{ $title }} | {{ $siteTitle }}</title>
+  <meta property="og:title" content="{{ $title }} | {{ $siteTitle }}">
+	{{- end -}}
+
+  <meta property="og:description" content="{{ .Description }}">
+  <meta property="og:type" content="blog">
+  <meta property="og:link" content="{{ .Permalink }}">
+
+  {{- if isset .Site.Params "theme_color" }}
+  <meta name="theme-color" content="{{ .Site.Params.theme_color }}">
+  <meta name="msapplication-navbutton-color" content="{{ .Site.Params.theme_color }}">
+  <meta name="apple-mobile-web-app-status-bar-style" content="{{ .Site.Params.theme_color }}">
+  {{- end -}}
+
+	{{- if isset .Site.Params "site_icon" -}}
+	<link rel="shortcut icon" type="image/png" href={{ .Site.Params.site_icon }} />
+  <meta property="og:image" content="{{ .Site.BaseURL }}/{{ .Site.Params.site_icon }}" />
+	{{- end -}}
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{{ with .OutputFormats.Get "rss" -}}
+	{{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+	{{ end -}}
+
+	<link rel="stylesheet" type="text/css" media="screen" href="{{ .Site.BaseURL }}/css/main.css" />    
+</head>

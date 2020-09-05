@@ -1,1 +1,3 @@
-# itzybz.github.io
+# itzy.bz
+
+This is the hosting for itzybz's website! 

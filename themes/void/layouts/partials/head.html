@@ -1,0 +1,23 @@
+<div class="header_main">
+	<a href="{{ .Site.BaseURL }}">
+		{{- if isset .Site.Params "header_title" -}}
+		<p class="header_title">{{ .Site.Params.header_title }}</p>
+    {{- else -}}
+		<p class="header_title">{{ .Site.Title }}</p>
+    {{- end -}}
+		{{- if isset .Site.Params "header_desc" -}} 
+		<p class="header_desc">{{ .Site.Params.header_desc }}</p>
+		{{- end -}}
+	</a>
+  <br>
+  <nav id="main">
+    {{ range .Site.Menus.main }}
+      <a href="{{ .URL }}">{{ .Name }}</a>
+    {{ end }}
+  </nav>
+	<nav id="social">
+		{{ range .Site.Menus.social }}
+			<a href="{{ .URL }}">{{ .Name }}</a>
+		{{ end }}
+	</nav>
+</div>

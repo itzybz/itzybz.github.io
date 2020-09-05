@@ -1,0 +1,20 @@
+baseURL = "//itzy.bz/"
+languageCode = "en-us"
+title = "itzybz"
+theme = "void"
+paginate = 5 
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[params]
+  rss_url = "https://itzy.bz/posts/index.xml"
+  header_title = "itzybz"
+  theme_color = "#0a0a0a"
+  site_desc = "an itzy game console"
+  subtitle = "an itzy game console"
+  construct = true 
+
+[[menu.social]]
+name = "github"
+url = "https://github.com/itzybz"

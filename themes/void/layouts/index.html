@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+{{ partial "header.html" . }}
+<body>
+    <div class="wrapper">
+		{{ partial "head.html" . }}
+      <h3 class="construction">This website is under construction! To check our progress, check our repository on <a href="https://github.com/itzybz/itzybz">GitHub!</a></h3>
+				{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+				{{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) }}
+				{{ range $paginator.Pages  }}
+				<section class="post_listed">
+					<h1 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h1>
+					<time class="post_time">{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</time>
+					<br><span class="description">
+						{{ if isset .Params "description" }}
+						{{ .Description }}
+						{{ else }}
+						{{ .Summary }}&hellip;
+						{{ end }}
+					</span><br/>
+				</section>
+				{{ end }}
+				{{ template "partials/paginator.html" . }}
+			{{ partial "footer.html" . }}
+		</div>
+    </div>
+		
+	</div>
+	
+</body>
+</html>
